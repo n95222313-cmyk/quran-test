@@ -28,19 +28,10 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 import { db, auth } from "../config/firebase.js";
-
-const adminFirebaseConfig = {
-  apiKey: "AIzaSyC7FNd9XYssihLdEXRR0BfeJMmkO2qfsw8",
-  authDomain: "test-cc853.firebaseapp.com",
-  projectId: "test-cc853",
-  storageBucket: "test-cc853.firebasestorage.app",
-  messagingSenderId: "459506119460",
-  appId: "1:459506119460:web:f767ac7f93f2c4fa8f79b1",
-  measurementId: "G-63HVZGE5L5"
-};
+import { appConfig } from "../config/app-config.js";
 
 const adminApp = !getApps().some(app => app.name === "AdminSheikhAppInstance")
-  ? initializeApp(adminFirebaseConfig, "AdminSheikhAppInstance")
+  ? initializeApp(appConfig.firebaseConfig, "AdminSheikhAppInstance")
   : getApp("AdminSheikhAppInstance");
 
 const adminAuth = getAuth(adminApp);
@@ -50,7 +41,7 @@ export const adminService = {
     let newUid = null;
     try {
       const currentUser = auth.currentUser;
-      if (!currentUser || currentUser.uid !== "mgWsdCCOvYQAS0SE0rgOJesNyQl2") {
+      if (!currentUser || currentUser.uid !== appConfig.centerAdminUid) {
         return { success: false, error: "غير مصرح لك بإجراء هذه العملية." };
       }
 
@@ -100,7 +91,7 @@ export const adminService = {
   async getSheikhs() {
     try {
       const currentUser = auth.currentUser;
-      if (!currentUser || currentUser.uid !== "mgWsdCCOvYQAS0SE0rgOJesNyQl2") {
+      if (!currentUser || currentUser.uid !== appConfig.centerAdminUid) {
         return { success: false, error: "غير مصرح.", data: [] };
       }
 
@@ -120,7 +111,7 @@ export const adminService = {
   async getSheikhStudentCount(sheikhUid) {
     try {
       const currentUser = auth.currentUser;
-      if (!currentUser || currentUser.uid !== "mgWsdCCOvYQAS0SE0rgOJesNyQl2") {
+      if (!currentUser || currentUser.uid !== appConfig.centerAdminUid) {
         return 0;
       }
       if (!sheikhUid) return 0;
@@ -137,7 +128,7 @@ export const adminService = {
   async updateSheikhStatus(sheikhUid, disabledState) {
     try {
       const currentUser = auth.currentUser;
-      if (!currentUser || currentUser.uid !== "mgWsdCCOvYQAS0SE0rgOJesNyQl2") {
+      if (!currentUser || currentUser.uid !== appConfig.centerAdminUid) {
         return { success: false, error: "غير مصرح." };
       }
 
