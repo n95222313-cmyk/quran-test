@@ -6,7 +6,7 @@
  * لعزل جلسة الطالب عن جلسة الشيخ.
  *
  * TEST PROJECT:
- * test-cc853
+ * quran-test-e8139 (Centralized)
  */
 
 import {
@@ -35,34 +35,9 @@ import {
   db
 } from "../config/firebase.js";
 
-
-// ============================================================
-// Firebase Test Project Configuration
-// ============================================================
-
-const studentFirebaseConfig = {
-
-  apiKey:
-    "AIzaSyC7FNd9XYssihLdEXRR0BfeJMmkO2qfsw8",
-
-  authDomain:
-    "test-cc853.firebaseapp.com",
-
-  projectId:
-    "test-cc853",
-
-  storageBucket:
-    "test-cc853.firebasestorage.app",
-
-  messagingSenderId:
-    "459506119460",
-
-  appId:
-    "1:459506119460:web:f767ac7f93f2c4fa8f79b1",
-
-  measurementId:
-    "G-63HVZGE5L5"
-};
+import {
+  appConfig
+} from "../config/app-config.js";
 
 
 // ============================================================
@@ -71,7 +46,7 @@ const studentFirebaseConfig = {
 
 const studentApp = !getApps().some(app => app.name === "StudentAppInstance")
   ? initializeApp(
-      studentFirebaseConfig,
+      appConfig.firebaseConfig,
       "StudentAppInstance"
     )
   : getApp("StudentAppInstance");
@@ -1056,7 +1031,8 @@ export const studentAuthService = {
 
 
       return {
-        success: true
+        success: true,
+        error: null
       };
 
 
