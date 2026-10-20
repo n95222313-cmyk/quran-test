@@ -2,9 +2,6 @@
  * Firebase Core Initialization & Authentication Service
  * طبقة مستقلة لتهيئة Firebase Web SDK (v10+ ESM)
  * وإدارة مصادقة الشيخ وFirestore
- *
- * TEST PROJECT:
- * test-cc853
  */
 
 import {
@@ -22,20 +19,17 @@ import {
   getFirestore
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+import {
+  appConfig
+} from "./app-config.js";
+
 
 // ============================================================
-// Firebase Test Project Configuration
+// Firebase Configuration
+// الإعدادات المركزية الخاصة بنسخة العميل
 // ============================================================
 
-const firebaseConfig = {
-  apiKey: "AIzaSyC7FNd9XYssihLdEXRR0BfeJMmkO2qfsw8",
-  authDomain: "test-cc853.firebaseapp.com",
-  projectId: "test-cc853",
-  storageBucket: "test-cc853.firebasestorage.app",
-  messagingSenderId: "459506119460",
-  appId: "1:459506119460:web:f767ac7f93f2c4fa8f79b1",
-  measurementId: "G-63HVZGE5L5"
-};
+const firebaseConfig = appConfig.firebaseConfig;
 
 
 // ============================================================
