@@ -1,0 +1,606 @@
+/**
+
+* Student Portal Component
+* واجهة الطالب داخل صفحة الدخول الموحدة
+  */
+
+import {
+studentAuthService
+} from "../services/studentAuthService.js";
+
+import {
+studentPortalService
+} from "../services/studentPortalService.js";
+
+export async function initStudentPortal(container) {
+
+if (!container) return;
+
+container.innerHTML = ` <div class="student-portal">
+
+```
+  <div class="student-portal-header">
+
+    <div>
+
+      <div class="student-portal-kicker">
+        📖 منظم الحفظ
+      </div>
+
+      <h1>
+        بوابة الطالب
+      </h1>
+
+      <p>
+        متابعة الحفظ والمراجعة وتقارير الحصص
+      </p>
+
+    </div>
+
+
+    <button
+      type="button"
+      id="student-logout-btn"
+      class="student-logout-btn"
+    >
+      تسجيل الخروج
+    </button>
+
+  </div>
+
+
+  <div
+    id="student-loading"
+    class="student-message"
+  >
+    <div class="student-loading-spinner"></div>
+    <span>جاري تحميل بياناتك...</span>
+  </div>
+
+
+  <div
+    id="student-content"
+    style="display:none;"
+  ></div>
+
+</div>
+```
+
+`;
+
+const loading =
+container.querySelector(
+"#student-loading"
+);
+
+const content =
+container.querySelector(
+"#student-content"
+);
+
+const logoutBtn =
+container.querySelector(
+"#student-logout-btn"
+);
+
+/* =========================================================
+Logout
+========================================================= */
+
+logoutBtn.addEventListener(
+"click",
+async () => {
+
+```
+  logoutBtn.disabled =
+    true;
+
+  logoutBtn.textContent =
+    "جاري تسجيل الخروج...";
+
+
+  try {
+
+    await studentAuthService.logout();
+
+  } finally {
+
+    /*
+     * نرسل حدثاً إلى index.html
+     * حتى يرجع المستخدم لشاشة الدخول
+     * بدون الانتقال إلى student.html.
+     */
+
+    window.dispatchEvent(
+      new CustomEvent(
+        "student-logout-requested"
+      )
+    );
+
+  }
+
+}
+```
+
+);
+
+/* =========================================================
+Load Student
+========================================================= */
+
+const studentRes =
+await studentPortalService.getCurrentStudent();
+
+if (!studentRes.success) {
+
+```
+loading.innerHTML = `
+  <div class="student-error">
+    ⚠️ ${escapeHtml(studentRes.error)}
+  </div>
+`;
+
+return;
+```
+
+}
+
+const student =
+studentRes.data;
+
+/* =========================================================
+Load Reports
+========================================================= */
+
+const reportsRes =
+await studentPortalService.getStudentReports();
+
+const reports =
+reportsRes.success
+? reportsRes.data
+: [];
+
+loading.style.display =
+"none";
+
+content.style.display =
+"block";
+
+renderStudentContent(
+content,
+student,
+reports,
+reportsRes
+);
+
+}
+
+/* ============================================================
+Student Content
+============================================================ */
+
+function renderStudentContent(
+container,
+student,
+reports,
+reportsRes
+) {
+
+const reportsHtml =
+reports.length === 0
+
+```
+  ? `
+    <div class="student-empty">
+
+      <div class="student-empty-icon">
+        📖
+      </div>
+
+      <strong>
+        لا توجد تقارير مسجلة لك حتى الآن
+      </strong>
+
+      <span>
+        ستظهر تقارير حصصك هنا بعد تسجيلها من المحفظ.
+      </span>
+
+    </div>
+  `
+
+  : reports
+      .map(renderReport)
+      .join("");
+```
+
+container.innerHTML = `
+
+```
+<!-- Profile -->
+
+<div class="student-profile-card">
+
+  <div class="student-avatar">
+    👤
+  </div>
+
+
+  <div class="student-profile-info">
+
+    <span class="student-profile-label">
+      الطالب
+    </span>
+
+    <h2>
+      أهلاً بك يا
+      ${escapeHtml(
+        student.name || "طالب"
+      )}
+    </h2>
+
+    <p>
+
+      ${
+        student.level
+          ? `
+            <span class="student-level-badge">
+              ${escapeHtml(student.level)}
+            </span>
+          `
+          : `
+            متابعة القرآن الكريم
+          `
+      }
+
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- Summary -->
+
+<div class="student-summary">
+
+  <div class="student-summary-card">
+
+    <span class="student-summary-icon">
+      📊
+    </span>
+
+    <strong>
+      ${reports.length}
+    </strong>
+
+    <small>
+      إجمالي التقارير
+    </small>
+
+  </div>
+
+
+  <div class="student-summary-card">
+
+    <span class="student-summary-icon">
+      📖
+    </span>
+
+    <strong>
+
+      ${
+        reports.length
+          ? escapeHtml(
+              reports[0].date || "-"
+            )
+          : "-"
+      }
+
+    </strong>
+
+    <small>
+      آخر حصة
+    </small>
+
+  </div>
+
+
+  <div class="student-summary-card">
+
+    <span class="student-summary-icon">
+      ⭐
+    </span>
+
+    <strong>
+
+      ${
+        reports.length &&
+        reports[0].rating !== null &&
+        reports[0].rating !== undefined
+          ? escapeHtml(
+              reports[0].rating
+            )
+          : "-"
+      }
+
+    </strong>
+
+    <small>
+      تقييم آخر حصة
+    </small>
+
+  </div>
+
+</div>
+
+
+<!-- Reports -->
+
+<section class="student-reports-section">
+
+  <div class="student-section-title">
+
+    <div>
+
+      <span>
+        سجل المتابعة
+      </span>
+
+      <h2>
+        📋 تقارير الحصص
+      </h2>
+
+    </div>
+
+  </div>
+
+
+  ${
+    !reportsRes.success
+
+      ? `
+        <div class="student-error">
+
+          ⚠️
+          ${escapeHtml(
+            reportsRes.error
+          )}
+
+        </div>
+      `
+
+      : reportsHtml
+  }
+
+</section>
+```
+
+`;
+
+}
+
+/* ============================================================
+Report
+============================================================ */
+
+function renderReport(report) {
+
+const memorization =
+Array.isArray(
+report.memorization
+)
+? report.memorization
+: [];
+
+const review =
+Array.isArray(
+report.review
+)
+? report.review
+: [];
+
+const memorizationHtml =
+memorization.length
+
+```
+  ? memorization
+      .map(
+        item => `
+          <div class="quran-item">
+
+            <span>
+              سورة
+              ${escapeHtml(
+                item.surah || ""
+              )}
+            </span>
+
+            <span>
+              من آية
+              ${escapeHtml(
+                item.fromAyah || ""
+              )}
+              إلى
+              ${escapeHtml(
+                item.toAyah || ""
+              )}
+            </span>
+
+          </div>
+        `
+      )
+      .join("")
+
+  : `
+      <div class="student-no-value">
+        لا يوجد حفظ جديد مسجل
+      </div>
+    `;
+```
+
+const reviewHtml =
+review.length
+
+```
+  ? review
+      .map(
+        item => `
+          <div class="quran-item">
+
+            <span>
+              سورة
+              ${escapeHtml(
+                item.surah || ""
+              )}
+            </span>
+
+            <span>
+              من آية
+              ${escapeHtml(
+                item.fromAyah || ""
+              )}
+              إلى
+              ${escapeHtml(
+                item.toAyah || ""
+              )}
+            </span>
+
+          </div>
+        `
+      )
+      .join("")
+
+  : `
+      <div class="student-no-value">
+        لا توجد مراجعة مسجلة
+      </div>
+    `;
+```
+
+const rating =
+report.rating !== null &&
+report.rating !== undefined
+? `${report.rating} من 5`
+: "بدون تقييم";
+
+return `
+
+```
+<article class="student-report-card">
+
+  <div class="student-report-header">
+
+    <div>
+
+      <span class="student-report-date-label">
+        تاريخ الحصة
+      </span>
+
+      <strong>
+        📅
+        ${escapeHtml(
+          report.date || "-"
+        )}
+      </strong>
+
+    </div>
+
+
+    <span class="student-report-rating">
+      ⭐
+      ${escapeHtml(rating)}
+    </span>
+
+  </div>
+
+
+  <div class="student-report-body">
+
+
+    <!-- Memorization -->
+
+    <div class="student-report-field">
+
+      <strong>
+        📖 الحفظ الجديد
+      </strong>
+
+      <div class="student-report-values">
+        ${memorizationHtml}
+      </div>
+
+    </div>
+
+
+    <!-- Review -->
+
+    <div class="student-report-field">
+
+      <strong>
+        🔄 المراجعة
+      </strong>
+
+      <div class="student-report-values">
+        ${reviewHtml}
+      </div>
+
+    </div>
+
+
+    <!-- Notes -->
+
+    <div class="student-report-field">
+
+      <strong>
+        📝 ملاحظات المحفظ
+      </strong>
+
+      <div class="student-notes-value">
+
+        ${escapeHtml(
+          report.notes ||
+          "لا توجد ملاحظات"
+        )}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</article>
+```
+
+`;
+
+}
+
+/* ============================================================
+Escape HTML
+============================================================ */
+
+function escapeHtml(value) {
+
+return String(value ?? "")
+.replace(
+/&/g,
+"&"
+)
+.replace(
+/</g,
+"<"
+)
+.replace(
+/>/g,
+">"
+)
+.replace(
+/"/g,
+"""
+)
+.replace(
+/'/g,
+"'"
+);
+
+}

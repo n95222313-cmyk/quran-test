@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>منظم المحفظ الذكي</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+<body>
+
+
+
+  <!-- =========================================================
+       شاشة الدخول الموحدة
+       ========================================================= -->
+
+  <div
+    id="welcome-screen"
+    class="welcome-screen-wrapper"
+  >
+
+    <!-- العناصر المتحركة في الخلفية -->
+
+    <div class="floating-paper paper-1">✦</div>
+    <div class="floating-paper paper-2">❧</div>
+    <div class="floating-paper paper-3">✦</div>
+    <div class="floating-paper paper-4">❧</div>
+    <div class="floating-paper paper-5">✦</div>
+    <div class="floating-paper paper-6">❧</div>
+    <div class="floating-paper paper-7">✦</div>
+    <div class="floating-paper paper-8">❧</div>
+    <div class="floating-paper paper-9">✦</div>
+    <div class="floating-paper paper-10">❧</div>
+
+
+
+    <div class="welcome-glow glow-1"></div>
+    <div class="welcome-glow glow-2"></div>
+
+
+
+    <div class="welcome-card">
+
+      <div class="welcome-icon">
+        📖
+      </div>
+
+
+
+      <div class="welcome-title-area">
+
+        <span class="welcome-small-title">
+          منظومة القرآن الكريم
+        </span>
+
+        <h1>
+          أهلاً بك في
+          <strong>منظم الحفظ</strong>
+        </h1>
+
+        <p class="welcome-desc">
+          منصة ذكية لتنظيم الحفظ والمراجعة
+          ومتابعة رحلة الطالب في القرآن الكريم.
+        </p>
+
+      </div>
+
+
+
+      <!-- =====================================================
+           نموذج الدخول الموحد
+           ===================================================== -->
+
+      <form
+        id="unified-login-form"
+        class="unified-login-form"
+      >
+
+        <div class="login-field">
+
+          <label for="login-username">
+            اسم المستخدم أو البريد الإلكتروني
+          </label>
+
+          <div class="login-input-wrapper">
+
+            <span class="login-input-icon">
+              📧
+            </span>
+
+            <input
+              type="text"
+              id="login-username"
+              autocomplete="username"
+              placeholder="اكتب اسم المستخدم أو البريد الإلكتروني"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+
+        <div class="login-field">
+
+          <label for="login-password">
+            كلمة المرور
+          </label>
+
+          <div class="login-input-wrapper">
+
+            <span class="login-input-icon">
+              🔒
+            </span>
+
+            <input
+              type="password"
+              id="login-password"
+              autocomplete="current-password"
+              placeholder="اكتب كلمة المرور"
+              required
+            >
+
+            <button
+              type="button"
+              id="toggle-password-btn"
+              class="toggle-password-btn"
+              aria-label="إظهار كلمة المرور"
+            >
+              👁
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <div
+          id="unified-login-error"
+          class="unified-login-error"
+          style="display:none;"
+        ></div>
+
+
+
+        <button
+          type="submit"
+          id="unified-login-btn"
+          class="unified-login-btn"
+        >
+
+          <span class="login-btn-icon">
+            دخول
+          </span>
+
+          <span class="login-btn-arrow">
+            ←
+          </span>
+
+        </button>
+
+      </form>
+
+
+
+      <div class="welcome-footer">
+
+        <span>
+          🔐 دخول آمن
+        </span>
+
+        <span class="footer-separator">
+          •
+        </span>
+
+        <span>
+          📚 متابعة الحفظ
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================================================
+       التطبيق
+       ========================================================= -->
+
+  <div
+    id="app"
+    style="display:none;"
+  >
+
+    <div class="app-layout">
+
+
+
+      <!-- =====================================================
+           Sidebar / Navigation
+           ===================================================== -->
+
+      <aside class="sidebar">
+
+        <div class="sidebar-brand">
+          المحفظ الذكي
+        </div>
+
+
+
+        <nav class="sidebar-nav">
+
+          <!-- الصفحة الرئيسية -->
+
+          <button
+            class="nav-item active"
+            data-tab="dashboard"
+          >
+            الصفحة الرئيسية
+          </button>
+
+
+
+          <!-- الطلاب -->
+
+          <button
+            class="nav-item"
+            data-tab="students"
+          >
+            الطلاب
+          </button>
+
+
+
+          <!-- الحسابات -->
+
+          <button
+            class="nav-item"
+            data-tab="payments"
+          >
+            💰 الحسابات
+          </button>
+
+
+
+          <!-- جدول المواعيد -->
+
+          <button
+            class="nav-item"
+            data-tab="schedule"
+          >
+            جدول المواعيد
+          </button>
+
+
+
+          <!-- المواعيد المتاحة -->
+
+          <button
+            class="nav-item"
+            data-tab="available-slots"
+          >
+            📅 المواعيد المتاحة
+          </button>
+
+
+
+          <!-- إحصائيات الطلاب -->
+
+          <button
+            class="nav-item"
+            data-tab="student-stats"
+          >
+            📊 إحصائيات الطلاب
+          </button>
+
+
+
+          <!-- الإعدادات -->
+
+          <button
+            class="nav-item"
+            data-tab="settings"
+          >
+            ⚙ الإعدادات
+          </button>
+
+
+
+          <!-- إدارة الشيوخ (خاص بالإدارة المركزية) -->
+
+          <button
+            class="nav-item"
+            data-tab="sheikhs"
+            id="nav-sheikhs-btn"
+            style="display:none;"
+          >
+            👨‍‍🏫 إدارة الشيوخ
+          </button>
+
+        </nav>
+
+      </aside>
+
+
+
+      <!-- =====================================================
+           Main Content
+           ===================================================== -->
+
+      <main class="main-content">
+
+        <header class="top-bar">
+
+          <span id="page-title">
+            لوحة الشيخ الرئيسية
+          </span>
+
+
+
+          <!--
+            هذا الزر خاص بالحساب الحالي.
+            سيتم استخدامه للإدارة المركزية أو الشيخ.
+            لا يظهر أثناء دخول الطالب.
+          -->
+
+          <button
+            type="button"
+            id="logout-btn"
+            class="secondary-btn"
+          >
+            تسجيل الخروج
+          </button>
+
+        </header>
+
+
+
+        <div
+          id="appContent"
+          class="content-body"
+        ></div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================================================
+       نقطة التشغيل
+       ========================================================= -->
+
+  <script type="module">
+
+    /* =========================================================
+       Firebase - Sheikh / Center Admin
+       ========================================================= */
+
+    import {
+      authService,
+      auth
+    } from "./src/config/firebase.js";
+
+
+
+    /* =========================================================
+       Firebase - Student
+       ========================================================= */
+
+    import {
+      studentAuth,
+      studentAuthService
+    } from "./src/services/studentAuthService.js";
+
+
+
+    /* =========================================================
+       Firebase Auth
+       ========================================================= */
+
+    import {
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+
+
+    /* =========================================================
+       Sheikh Components
+       ========================================================= */
+
+    import {
+      renderSheikhDashboard as renderDashboard
+    } from "./src/components/dashboard.js";
+
+
+
+    import {
+      initStudentsModule
+    } from "./src/components/students.js";
+
+
+
+    import {
+      initScheduleModule
+    } from "./src/components/schedule.js";
+
+
+
+    import {
+      initSettingsModule
+    } from "./src/components/settings.js";
+
+
+
+    /* =========================================================
+       Payments Component
+       ========================================================= */
+
+    import {
+      initPaymentsModule
+    } from "./src/components/payments.js";
+
+
+
+    /* =========================================================
+       Available Slots Component
+       ========================================================= */
+
+    import {
+      initAvailableSlotsModule
+    } from "./src/components/availableSlots.js";
+
+
+
+    /* =========================================================
+       Student Stats Component
+       ========================================================= */
+
+    import {
+      initStudentStatsModule
+    } from "./src/components/studentStats.js";
+
+
+
+    /* =========================================================
+       Student Portal
+       ========================================================= */
+
+    import {
+      initStudentPortal
+    } from "./src/components/studentPortal.js";
+
+
+
+    /* =========================================================
+       Sheikhs Management Component
+       ========================================================= */
+
+    import {
+      initSheikhsManagementModule
+    } from "./src/components/sheikhsManagement.js";
+
+
+
+    /* =========================================================
+       DOM
+       ========================================================= */
+
+    const app =
+      document.getElementById("app");
+
+
+
+    const appContent =
+      document.getElementById("appContent");
+
+
+
+    const pageTitle =
+      document.getElementById("page-title");
+
+
+
+    const navButtons =
+      document.querySelectorAll(".nav-item");
+
+
+
+    const logoutBtn =
+      document.getElementById("logout-btn");
+
+
+
+    const welcomeScreen =
+      document.getElementById("welcome-screen");
+
+
+
+    const loginForm =
+      document.getElementById("unified-login-form");
+
+
+
+    const usernameInput =
+      document.getElementById("login-username");
+
+
+
+    const passwordInput =
+      document.getElementById("login-password");
+
+
+
+    const loginButton =
+      document.getElementById("unified-login-btn");
+
+
+
+    const loginError =
+      document.getElementById("unified-login-error");
+
+
+
+    const togglePasswordBtn =
+      document.getElementById("toggle-password-btn");
+
+
+
+    /* =========================================================
+       Application State
+       ========================================================= */
+
+    let currentUser = null;
+
+    let currentRole = null;
+
+    let isAppInitialized = false;
+
+    let isExplicitLogout = false;
+
+    let loginInProgress = false;
+
+
+
+    const SAVED_TAB_KEY =
+      "smart_quran_organizer_active_tab";
+
+
+
+    const validTabs = [
+      "dashboard",
+      "students",
+      "payments",
+      "schedule",
+      "available-slots",
+      "student-stats",
+      "settings",
+      "sheikhs"
+    ];
+
+
+
+    let currentTab =
+      localStorage.getItem(
+        SAVED_TAB_KEY
+      ) || "dashboard";
+
+
+
+    if (!validTabs.includes(currentTab)) {
+
+      currentTab =
+        "dashboard";
+
+    }
+
+
+
+    /* =========================================================
+       Account Roles
+       ========================================================= */
+
+    const CENTER_ADMIN_EMAIL =
+      "abdallah@test.com";
+
+
+
+    /* =========================================================
+       تجهيز سجل المتصفح للتطبيق
+       ========================================================= */
+
+    function ensureAppHistoryState() {
+
+      try {
+
+        if (
+          !window.history.state ||
+          window.history.state.page !== "smart-quran-app"
+        ) {
+
+          window.history.pushState(
+            {
+              page: "smart-quran-app"
+            },
+            "",
+            window.location.href
+          );
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "App history state error:",
+          error
+        );
+
+      }
+
+    }
+
+
+
+    /* =========================================================
+       تحديد نوع الحساب
+       ========================================================= */
+
+    function getAccountRole(email) {
+      const normalizedEmail = String(email || "").trim().toLowerCase();
+
+      if (normalizedEmail === CENTER_ADMIN_EMAIL) {
+        return "center_admin";
+      }
+
+      return "sheikh";
+    }
+
+
+
+    /* =========================================================
+       Login Error
+       ========================================================= */
+
+    function showLoginError(message) {
+
+      loginError.textContent =
+        message ||
+        "حدث خطأ أثناء تسجيل الدخول.";
+
+      loginError.style.display =
+        "block";
+
+    }
+
+
+
+    function hideLoginError() {
+
+      loginError.textContent =
+        "";
+
+      loginError.style.display =
+        "none";
+
+    }
+
+
+
+    /* =========================================================
+       Login Loading
+       ========================================================= */
+
+    function setLoginLoading(isLoading) {
+
+      loginButton.disabled =
+        isLoading;
+
+
+
+      if (isLoading) {
+
+        loginButton.innerHTML = `
+          <span class="login-spinner"></span>
+          <span>جاري الدخول...</span>
+        `;
+
+      } else {
+
+        loginButton.innerHTML = `
+          <span class="login-btn-icon">
+            دخول
+          </span>
+
+          <span class="login-btn-arrow">
+            ←
+          </span>
+        `;
+
+      }
+
+    }
+
+
+
+    /* =========================================================
+       Student Portal Logout Callback
+       ========================================================= */
+
+    async function handleStudentLogout() {
+
+      isExplicitLogout =
+        true;
+
+
+
+      currentUser =
+        null;
+
+
+
+      currentRole =
+        null;
+
+
+
+      isAppInitialized =
+        false;
+
+
+
+      app.classList.remove(
+        "student-mode"
+      );
+
+
+
+      app.style.display =
+        "none";
+
+
+
+      appContent.innerHTML =
+        "";
+
+
+
+      welcomeScreen.style.display =
+        "flex";
+
+
+
+      logoutBtn.style.display =
+        "none";
+
+
+
+      hideLoginError();
+
+
+
+      passwordInput.value =
+        "";
+
+
+
+      loginButton.disabled =
+        false;
+
+
+
+      setLoginLoading(
+        false
+      );
+
+
+
+      try {
+
+        window.history.replaceState(
+          {
+            page: "login"
+          },
+          "",
+          window.location.href
+        );
+
+      } catch (error) {
+
+        console.warn(
+          "History state error:",
+          error
+        );
+
+      }
+
+
+
+      requestAnimationFrame(
+        () => {
+
+          usernameInput.focus();
+
+        }
+      );
+
+    }
+
+
+
+    /* =========================================================
+       شاشة الدخول
+       ========================================================= */
+
+    function showLoginScreen() {
+
+      console.log("[AUTH DEBUG] showLoginScreen() CALLED at:", new Date().toISOString());
+
+      currentUser =
+        null;
+
+
+
+      currentRole =
+        null;
+
+
+
+      isAppInitialized =
+        false;
+
+
+
+      app.classList.remove(
+        "student-mode"
+      );
+
+
+
+      app.style.display =
+        "none";
+
+
+
+      welcomeScreen.style.display =
+        "flex";
+
+
+
+      logoutBtn.style.display =
+        "none";
+
+
+
+      hideLoginError();
+
+
+
+      passwordInput.value =
+        "";
+
+
+
+      loginButton.disabled =
+        false;
+
+
+
+      setLoginLoading(
+        false
+      );
+
+
+
+      appContent.innerHTML =
+        "";
+
+
+
+      requestAnimationFrame(
+        () => {
+
+          usernameInput.focus();
+
+        }
+      );
+
+    }
+
+
+
+    /* =========================================================
+       شاشة الإدارة المركزية
+       ========================================================= */
+
+    function showCenterAdminApp() {
+
+      currentRole =
+        "center_admin";
+
+
+
+      ensureAppHistoryState();
+
+
+
+      app.classList.remove(
+        "student-mode"
+      );
+
+
+
+      app.classList.add(
+        "center-admin-mode"
+      );
+
+
+
+      app.style.display =
+        "block";
+
+
+
+      welcomeScreen.style.display =
+        "none";
+
+
+
+      logoutBtn.style.display =
+        "inline-flex";
+
+
+
+      pageTitle.textContent =
+        "الإدارة المركزية";
+
+
+
+      navButtons.forEach(
+        (button) => {
+
+          button.style.display =
+            "";
+
+        }
+      );
+
+      const navSheikhsBtn = document.getElementById("nav-sheikhs-btn");
+      if (navSheikhsBtn) {
+        navSheikhsBtn.style.display = "";
+      }
+
+    }
+
+
+
+    /* =========================================================
+       شاشة الشيخ
+       ========================================================= */
+
+    function showSheikhApp() {
+
+      currentRole =
+        "sheikh";
+
+
+
+      ensureAppHistoryState();
+
+
+
+      app.classList.remove(
+        "student-mode"
+      );
+
+
+
+      app.classList.remove(
+        "center-admin-mode"
+      );
+
+
+
+      app.style.display =
+        "block";
+
+
+
+      welcomeScreen.style.display =
+        "none";
+
+
+
+      logoutBtn.style.display =
+        "inline-flex";
+
+
+
+      pageTitle.textContent =
+        "لوحة الشيخ الرئيسية";
+
+
+
+      navButtons.forEach(
+        (button) => {
+
+          button.style.display =
+            "";
+
+        }
+      );
+
+      const navSheikhsBtn = document.getElementById("nav-sheikhs-btn");
+      if (navSheikhsBtn) {
+        navSheikhsBtn.style.display = "none";
+      }
+
+    }
+
+
+
+    /* =========================================================
+       شاشة الطالب
+       ========================================================= */
+
+    function showStudentApp() {
+
+      currentRole =
+        "student";
+
+
+
+      app.classList.add(
+        "student-mode"
+      );
+
+
+
+      app.classList.remove(
+        "center-admin-mode"
+      );
+
+
+
+      app.style.display =
+        "block";
+
+
+
+      welcomeScreen.style.display =
+        "none";
+
+
+
+      pageTitle.textContent =
+        "بوابة الطالب";
+
+
+
+      try {
+
+        if (
+          !window.history.state ||
+          window.history.state.page !== "student"
+        ) {
+
+          window.history.pushState(
+            {
+              page: "student"
+            },
+            "",
+            window.location.href
+          );
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "Student history state error:",
+          error
+        );
+
+      }
+
+    }
+
+
+
+    /* =========================================================
+       إظهار / إخفاء كلمة المرور
+       ========================================================= */
+
+    togglePasswordBtn.addEventListener(
+      "click",
+      () => {
+
+        const isPassword =
+          passwordInput.type === "password";
+
+
+
+        passwordInput.type =
+          isPassword
+            ? "text"
+            : "password";
+
+
+
+        togglePasswordBtn.textContent =
+          isPassword
+            ? "🙈"
+            : "👁";
+
+      }
+    );
+
+
+
+    /* =========================================================
+       تسجيل الدخول الموحد
+       ========================================================= */
+
+    loginForm.addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
+
+
+
+        if (loginInProgress) {
+
+          return;
+
+        }
+
+
+
+        hideLoginError();
+
+
+
+        const inputEmail =
+          usernameInput.value.trim();
+
+
+
+        const password =
+          passwordInput.value;
+
+
+
+        if (!inputEmail) {
+
+          showLoginError(
+            "اكتب البريد الإلكتروني أو اسم المستخدم أولاً."
+          );
+
+          return;
+
+        }
+
+
+
+        if (!password) {
+
+          showLoginError(
+            "اكتب كلمة المرور أولاً."
+          );
+
+          return;
+
+        }
+
+
+
+        loginInProgress =
+          true;
+
+
+
+        setLoginLoading(
+          true
+        );
+
+
+
+        try {
+
+          /* ===================================================
+             1) محاولة تسجيل دخول الشيخ / الإدارة المركزية
+             =================================================== */
+
+          const sheikhEmail = inputEmail;
+
+          // إنهاء أي جلسة طالب قديمة
+          await studentAuthService
+            .logout()
+            .catch(() => {});
+
+          const result =
+            await authService.login(
+              sheikhEmail,
+              password
+            );
+
+          if (result.success) {
+            currentUser =
+              result.user;
+
+            currentRole =
+              getAccountRole(
+                result.user?.email
+              );
+
+            isExplicitLogout =
+              false;
+
+            if (
+              currentRole ===
+              "center_admin"
+            ) {
+
+              showCenterAdminApp();
+
+            } else {
+
+              showSheikhApp();
+
+            }
+
+            isAppInitialized =
+              true;
+
+            await switchTab(
+              currentTab
+            );
+
+            return;
+          }
+
+
+
+          /* ===================================================
+             2) إذا فشل دخول الشيخ، نجرب حساب الطالب
+             =================================================== */
+
+          if (auth.currentUser) {
+
+            await authService
+              .logout()
+              .catch(() => {});
+
+          }
+
+
+
+          const studentResult =
+            await studentAuthService.login(
+              inputEmail,
+              password
+            );
+
+
+
+          if (!studentResult.success) {
+
+            showLoginError(
+              studentResult.error ||
+              "اسم المستخدم أو البريد الإلكتروني أو كلمة المرور غير صحيحة."
+            );
+
+            return;
+
+          }
+
+
+
+          currentRole =
+            "student";
+
+
+
+          currentUser =
+            studentResult.user;
+
+
+
+          isExplicitLogout =
+            false;
+
+
+
+          showStudentApp();
+
+
+
+          appContent.innerHTML =
+            "";
+
+
+
+          await initStudentPortal(
+            appContent,
+            {
+              onLogout:
+                handleStudentLogout
+            }
+          );
+
+
+
+        } catch (error) {
+
+          console.error(
+            "Unified login error:",
+            error
+          );
+
+
+
+          showLoginError(
+            error.message ||
+            "حدث خطأ غير متوقع أثناء تسجيل الدخول."
+          );
+
+
+
+        } finally {
+
+          loginInProgress =
+            false;
+
+
+
+          setLoginLoading(
+            false
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================================================
+       Tabs
+       ========================================================= */
+
+    async function switchTab(tabName) {
+
+      if (
+        currentRole !== "sheikh" &&
+        currentRole !== "center_admin"
+      ) {
+
+        return;
+
+      }
+
+
+
+      if (!validTabs.includes(tabName)) {
+
+        tabName =
+          "dashboard";
+
+      }
+
+
+
+      currentTab =
+        tabName;
+
+
+
+      localStorage.setItem(
+        SAVED_TAB_KEY,
+        currentTab
+      );
+
+
+
+      navButtons.forEach(
+        (button) => {
+
+          button.classList.toggle(
+            "active",
+            button.getAttribute(
+              "data-tab"
+            ) === tabName
+          );
+
+        }
+      );
+
+
+
+      appContent.innerHTML =
+        "";
+
+
+
+      /* =====================================================
+         Dashboard
+         ===================================================== */
+
+      if (tabName === "dashboard") {
+
+        if (
+          currentRole ===
+          "center_admin"
+        ) {
+
+          pageTitle.textContent =
+            "الإدارة المركزية";
+
+
+
+        } else {
+
+          pageTitle.textContent =
+            "لوحة الشيخ الرئيسية";
+
+        }
+
+
+
+        renderDashboard(
+          "appContent"
+        );
+
+      }
+
+
+
+      /* =====================================================
+         Students
+         ===================================================== */
+
+      else if (tabName === "students") {
+
+        if (
+          currentRole ===
+          "center_admin"
+        ) {
+
+          pageTitle.textContent =
+            "إدارة طلاب المركز";
+
+        } else {
+
+          pageTitle.textContent =
+            "إدارة الطلاب";
+
+        }
+
+
+
+        await initStudentsModule(
+          appContent
+        );
+
+      }
+
+
+
+      /* =====================================================
+         Payments
+         ===================================================== */
+
+      else if (tabName === "payments") {
+
+        if (
+          currentRole ===
+          "center_admin"
+        ) {
+
+          pageTitle.textContent =
+            "حسابات المركز";
+
+        } else {
+
+          pageTitle.textContent =
+            "حسابات الطلاب";
+
+        }
+
+
+
+        await initPaymentsModule(
+          appContent
+        );
+
+      }
+
+
+
+      /* =====================================================
+         Schedule
+         ===================================================== */
+
+      else if (tabName === "schedule") {
+
+        if (
+          currentRole ===
+          "center_admin"
+        ) {
+
+          pageTitle.textContent =
+            "جداول المركز";
+
+        } else {
+
+          pageTitle.textContent =
+            "جدول المواعيد الأسبوعي";
+
+        }
+
+
+
+        await initScheduleModule(
+          appContent
+        );
+
+      }
+
+
+
+      /* =====================================================
+         Available Slots
+         ===================================================== */
+
+      else if (tabName === "available-slots") {
+
+        pageTitle.textContent =
+          "المواعيد المتاحة أسبوعياً";
+
+        await initAvailableSlotsModule(
+          appContent
+        );
+
+      }
+
+
+
+      /* =====================================================
+         Student Stats
+         ===================================================== */
+
+      else if (tabName === "student-stats") {
+
+        pageTitle.textContent =
+          "إحصائيات وسجل الطلاب";
+
+        await initStudentStatsModule(
+          appContent
+        );
+
+      }
+
+
+
+      /* =====================================================
+         Settings
+         ===================================================== */
+
+      else if (tabName === "settings") {
+
+        if (
+          currentRole ===
+          "center_admin"
+        ) {
+
+          pageTitle.textContent =
+            "إعدادات المركز";
+
+        } else {
+
+          pageTitle.textContent =
+            "إعدادات النظام";
+
+        }
+
+
+
+        await initSettingsModule(
+          appContent
+        );
+
+      }
+
+
+
+      /* =====================================================
+         Sheikhs Management (Center Admin Only)
+         ===================================================== */
+
+      else if (tabName === "sheikhs") {
+
+        if (
+          currentRole ===
+          "center_admin"
+        ) {
+
+          pageTitle.textContent =
+            "إدارة الشيوخ";
+
+          await initSheikhsManagementModule(
+            appContent
+          );
+
+        }
+
+      }
+
+    }
+
+
+
+    /* =========================================================
+       Navigation
+       ========================================================= */
+
+    navButtons.forEach(
+      (button) => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const tab =
+              button.getAttribute(
+                "data-tab"
+              );
+
+
+
+            switchTab(
+              tab
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+
+    /* =========================================================
+       Logout - المركز / الشيخ
+       ========================================================= */
+
+    logoutBtn.addEventListener(
+      "click",
+      async () => {
+
+        if (
+          currentRole !== "sheikh" &&
+          currentRole !== "center_admin"
+        ) {
+
+          return;
+
+        }
+
+
+
+        isExplicitLogout =
+          true;
+
+
+
+        logoutBtn.disabled =
+          true;
+
+
+
+        try {
+
+          await authService.logout();
+
+        } catch (error) {
+
+          console.error(
+            "Account logout error:",
+            error
+          );
+
+        } finally {
+
+          logoutBtn.disabled =
+            false;
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================================================
+       Logout - الطالب
+       ========================================================= */
+
+    window.addEventListener(
+      "student-logout-requested",
+      async () => {
+
+        if (
+          currentRole !== "student"
+        ) {
+
+          return;
+
+        }
+
+
+
+        isExplicitLogout =
+          true;
+
+
+
+        try {
+
+          if (
+            studentAuth.currentUser
+          ) {
+
+            await studentAuthService
+              .logout()
+              .catch(() => {});
+
+          }
+
+        } finally {
+
+          await handleStudentLogout();
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================================================
+       Auth State Change
+       ========================================================= */
+
+    authService.onAuthStateChange(
+      async (user) => {
+
+        if (
+          studentAuth.currentUser &&
+          !user
+        ) {
+          return;
+        }
+
+
+
+        currentUser =
+          user;
+
+
+
+        if (user) {
+
+          if (
+            studentAuth.currentUser
+          ) {
+
+            await studentAuthService
+              .logout()
+              .catch(() => {});
+
+          }
+
+
+
+          if (
+            user.email ===
+            CENTER_ADMIN_EMAIL
+          ) {
+
+            currentRole =
+              "center_admin";
+
+
+
+            isExplicitLogout =
+              false;
+
+
+
+            showCenterAdminApp();
+
+          } else {
+
+            currentRole =
+              "sheikh";
+
+
+
+            isExplicitLogout =
+              false;
+
+
+
+            showSheikhApp();
+
+          }
+
+
+
+          if (!isAppInitialized) {
+
+            isAppInitialized =
+              true;
+
+
+
+            await switchTab(
+              currentTab
+            );
+
+          }
+
+        } else {
+
+          if (
+            studentAuth.currentUser
+          ) {
+            return;
+          }
+
+
+
+          isAppInitialized =
+            false;
+
+
+
+          currentRole =
+            null;
+
+
+
+          if (isExplicitLogout) {
+
+            currentTab =
+              "dashboard";
+
+
+
+            localStorage.removeItem(
+              SAVED_TAB_KEY
+            );
+
+          }
+
+
+
+          showLoginScreen();
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================================================
+       Student Auth State Change
+       ========================================================= */
+
+    onAuthStateChanged(
+      studentAuth,
+      async (user) => {
+
+        if (user) {
+
+          if (
+            auth.currentUser
+          ) {
+
+            await studentAuthService
+              .logout()
+              .catch(() => {});
+
+            return;
+
+          }
+
+
+
+          if (
+            loginInProgress
+          ) {
+
+            return;
+
+          }
+
+
+
+          if (
+            currentRole === "student"
+          ) {
+
+            return;
+
+          }
+
+
+
+          currentUser =
+            user;
+
+
+
+          currentRole =
+            "student";
+
+
+
+          isExplicitLogout =
+            false;
+
+
+
+          showStudentApp();
+
+
+
+          appContent.innerHTML =
+            "";
+
+
+
+          try {
+
+            await initStudentPortal(
+              appContent,
+              {
+                onLogout:
+                  handleStudentLogout
+              }
+            );
+
+          } catch (error) {
+
+            console.error(
+              "Student portal initialization error:",
+              error
+            );
+
+          }
+
+
+
+          return;
+
+        }
+
+
+
+        if (
+          currentRole === "student"
+        ) {
+
+          await handleStudentLogout();
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================================================
+       Back Button - العودة للصفحة الرئيسية
+       ========================================================= */
+
+    window.addEventListener(
+      "popstate",
+      async () => {
+
+        /*
+         * نطبق السلوك على الشيخ والإدارة المركزية فقط.
+         * بوابة الطالب تحتفظ بسلوكها الحالي.
+         */
+
+        if (
+          currentRole !== "sheikh" &&
+          currentRole !== "center_admin"
+        ) {
+
+          return;
+
+        }
+
+
+
+        /*
+         * إذا كان المستخدم داخل تبويب فرعي،
+         * نعيده إلى الصفحة الرئيسية ونجهز حالة
+         * جديدة في سجل المتصفح حتى لا يخرج من التطبيق
+         * في نفس ضغطة الرجوع.
+         */
+
+        if (
+          currentTab !== "dashboard"
+        ) {
+
+          await switchTab(
+            "dashboard"
+          );
+
+
+
+          ensureAppHistoryState();
+
+        }
+
+      }
+    );
+
+
+
+  </script>
+
+</body>
+
+</html>

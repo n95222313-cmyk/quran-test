@@ -1,0 +1,2968 @@
+/* ============================================================
+Smart Quran Organizer
+Global Styles - Mobile First & RTL
+============================================================ */
+
+:root {
+
+--primary-color: #0d5c3f;
+--primary-hover: #09472f;
+
+--bg-color: #f4f6f8;
+--card-bg: #ffffff;
+
+--text-main: #212529;
+--text-muted: #6c757d;
+
+--border-color: #e2e8f0;
+
+--header-height: 65px;
+
+--shadow-sm:
+0 1px 3px rgba(0, 0, 0, 0.04),
+0 1px 2px rgba(0, 0, 0, 0.02);
+
+--shadow-md:
+0 4px 6px -1px rgba(0, 0, 0, 0.05),
+0 2px 4px -1px rgba(0, 0, 0, 0.03);
+
+--shadow-3d:
+0 8px 15px -3px rgba(13, 92, 63, 0.1),
+0 3px 6px -2px rgba(13, 92, 63, 0.05);
+
+--font-family:
+system-ui,
+-apple-system,
+"Segoe UI",
+Roboto,
+"Helvetica Neue",
+Arial,
+sans-serif;
+
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+font-family: var(--font-family);
+background-color: var(--bg-color);
+color: var(--text-main);
+direction: rtl;
+text-align: right;
+line-height: 1.5;
+overflow-x: hidden;
+}
+
+/* ============================================================
+APP LAYOUT
+============================================================ */
+
+#app {
+min-height: 100vh;
+}
+
+.app-layout {
+display: flex;
+min-height: 100vh;
+}
+
+.sidebar {
+width: 260px;
+background-color: var(--card-bg);
+border-left: 1px solid var(--border-color);
+display: flex;
+flex-direction: column;
+position: fixed;
+top: 0;
+bottom: 0;
+right: 0;
+z-index: 100;
+box-shadow: var(--shadow-sm);
+}
+
+.sidebar-brand {
+height: var(--header-height);
+display: flex;
+align-items: center;
+padding: 0 24px;
+font-size: 1.2rem;
+font-weight: 700;
+color: var(--primary-color);
+border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-nav {
+padding: 16px 12px;
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.nav-item {
+background: transparent;
+border: none;
+padding: 12px 16px;
+border-radius: 10px;
+font-family: inherit;
+font-size: 0.95rem;
+font-weight: 600;
+color: var(--text-muted);
+cursor: pointer;
+text-align: right;
+transition: all 0.2s ease;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.nav-item:hover {
+background-color: #f8fafc;
+color: var(--primary-color);
+}
+
+.nav-item.active {
+background:
+linear-gradient(
+135deg,
+var(--primary-color) 0%,
+#0a4831 100%
+);
+color: #ffffff;
+box-shadow: var(--shadow-3d);
+}
+
+.main-content {
+flex: 1;
+margin-right: 260px;
+display: flex;
+flex-direction: column;
+min-width: 0;
+}
+
+.top-bar {
+height: var(--header-height);
+background-color: var(--card-bg);
+border-bottom: 1px solid var(--border-color);
+padding: 0 32px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+position: sticky;
+top: 0;
+z-index: 99;
+}
+
+#page-title {
+font-size: 1.1rem;
+font-weight: 700;
+color: var(--text-main);
+}
+
+.content-body {
+padding: 32px;
+flex: 1;
+}
+
+/* ============================================================
+DASHBOARD
+============================================================ */
+
+.dashboard-container {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.dash-welcome-card {
+background:
+linear-gradient(
+135deg,
+var(--primary-color) 0%,
+#083b27 100%
+);
+color: #ffffff;
+padding: 24px;
+border-radius: 16px;
+box-shadow: var(--shadow-md);
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+.dash-welcome-card h2 {
+font-size: 1.3rem;
+font-weight: 700;
+}
+
+.dash-date {
+font-size: 0.85rem;
+opacity: 0.9;
+}
+
+.dash-subtitle {
+font-size: 0.9rem;
+opacity: 0.85;
+margin-top: 4px;
+}
+
+/* ============================================================
+STATS
+============================================================ */
+
+.stats-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 12px;
+}
+
+@media (min-width: 640px) {
+
+.stats-grid {
+grid-template-columns: repeat(4, 1fr);
+}
+
+}
+
+.stat-card {
+background-color: var(--card-bg);
+padding: 16px;
+border-radius: 12px;
+box-shadow: var(--shadow-sm);
+border: 1px solid var(--border-color);
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+transform: translateY(-2px);
+box-shadow: var(--shadow-md);
+}
+
+.stat-value {
+font-size: 1.5rem;
+font-weight: 700;
+color: var(--primary-color);
+margin-bottom: 4px;
+}
+
+.stat-label {
+font-size: 0.8rem;
+color: var(--text-muted);
+font-weight: 500;
+}
+
+/* ============================================================
+DASHBOARD SECTIONS
+============================================================ */
+
+.dash-section {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.section-title {
+font-size: 1rem;
+font-weight: 700;
+color: var(--text-main);
+border-right: 3px solid var(--primary-color);
+padding-right: 8px;
+}
+
+.lesson-card {
+background-color: var(--card-bg);
+border-radius: 14px;
+padding: 16px;
+box-shadow: var(--shadow-sm);
+border: 1px solid var(--border-color);
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 12px;
+}
+
+.lesson-card.current {
+border-right: 5px solid #22c55e;
+background:
+linear-gradient(
+to left,
+#f0fdf4 0%,
+#ffffff 100%
+);
+}
+
+.lesson-card.upcoming {
+border-right: 5px solid #3b82f6;
+}
+
+.lesson-info {
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
+
+.lesson-student {
+font-weight: 700;
+font-size: 1rem;
+}
+
+.lesson-time {
+font-size: 0.85rem;
+color: var(--text-muted);
+}
+
+.lesson-type {
+font-size: 0.75rem;
+background-color: #f1f5f9;
+color: var(--text-main);
+padding: 2px 8px;
+border-radius: 6px;
+width: fit-content;
+font-weight: 500;
+}
+
+/* ============================================================
+LESSONS LIST
+============================================================ */
+
+.lessons-list {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.lesson-list-item {
+background-color: var(--card-bg);
+padding: 12px 16px;
+border-radius: 10px;
+box-shadow: var(--shadow-sm);
+border: 1px solid var(--border-color);
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 12px;
+}
+
+.item-main {
+display: flex;
+flex-direction: column;
+gap: 2px;
+}
+
+.item-student {
+font-weight: 600;
+font-size: 0.95rem;
+}
+
+.item-time-type {
+font-size: 0.8rem;
+color: var(--text-muted);
+}
+
+.badge {
+font-size: 0.75rem;
+padding: 3px 10px;
+border-radius: 20px;
+font-weight: 600;
+}
+
+.badge.completed {
+background-color: #dcfce7;
+color: #166534;
+}
+
+.badge.current {
+background-color: #fef9c3;
+color: #854d0e;
+}
+
+.badge.upcoming {
+background-color: #e0f2fe;
+color: #0369a1;
+}
+
+/* ============================================================
+STUDENTS
+============================================================ */
+
+.students-container {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.students-header-card {
+background: var(--card-bg);
+border: 1px solid var(--border-color);
+padding: 20px 24px;
+border-radius: 16px;
+box-shadow: var(--shadow-md);
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 16px;
+}
+
+.students-title-area h2 {
+font-size: 1.3rem;
+font-weight: 700;
+color: var(--primary-color);
+margin-bottom: 4px;
+}
+
+.students-title-area p {
+font-size: 0.9rem;
+color: var(--text-muted);
+}
+
+.primary-action-btn {
+background:
+linear-gradient(
+135deg,
+var(--primary-color) 0%,
+#0a4831 100%
+);
+color: #ffffff;
+border: none;
+padding: 10px 18px;
+border-radius: 10px;
+font-family: inherit;
+font-size: 0.9rem;
+font-weight: 600;
+cursor: pointer;
+box-shadow: var(--shadow-3d);
+transition: transform 0.2s ease;
+}
+
+.primary-action-btn:hover {
+transform: translateY(-2px);
+}
+
+/* ============================================================
+FILTERS
+============================================================ */
+
+.filters-panel {
+background-color: var(--card-bg);
+border: 1px solid var(--border-color);
+border-radius: 14px;
+padding: 16px;
+box-shadow: var(--shadow-sm);
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.search-bar-wrapper {
+width: 100%;
+}
+
+.search-input,
+.filter-input,
+.filter-select {
+width: 100%;
+padding: 10px 14px;
+border-radius: 10px;
+border: 1px solid var(--border-color);
+background-color: var(--card-bg);
+font-family: inherit;
+font-size: 0.9rem;
+box-shadow: var(--shadow-sm);
+outline: none;
+transition: border-color 0.2s ease;
+}
+
+.search-input:focus,
+.filter-input:focus,
+.filter-select:focus {
+border-color: var(--primary-color);
+}
+
+.filters-grid {
+display: grid;
+grid-template-columns: 1fr;
+gap: 10px;
+}
+
+@media (min-width: 640px) {
+
+.filters-grid {
+grid-template-columns: 1fr 1fr 1fr auto;
+}
+
+}
+
+/* ============================================================
+STUDENT CARDS
+============================================================ */
+
+.students-grid {
+display: grid;
+grid-template-columns: 1fr;
+gap: 14px;
+}
+
+@media (min-width: 640px) {
+
+.students-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+
+}
+
+.student-card {
+background-color: var(--card-bg);
+border: 1px solid var(--border-color);
+border-radius: 14px;
+padding: 18px;
+box-shadow: var(--shadow-sm);
+display: flex;
+flex-direction: column;
+gap: 10px;
+transition:
+transform 0.2s ease,
+box-shadow 0.2s ease;
+}
+
+.student-card:hover {
+transform: translateY(-2px);
+box-shadow: var(--shadow-md);
+}
+
+.student-card-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 1px solid var(--border-color);
+padding-bottom: 8px;
+}
+
+.student-name {
+font-size: 1.05rem;
+font-weight: 700;
+color: var(--text-main);
+}
+
+.student-age {
+font-size: 0.8rem;
+background-color: #f1f5f9;
+color: var(--text-muted);
+padding: 2px 8px;
+border-radius: 6px;
+font-weight: 600;
+}
+
+.student-card-body {
+display: flex;
+flex-direction: column;
+gap: 6px;
+font-size: 0.88rem;
+color: var(--text-muted);
+}
+
+.student-card-body strong {
+color: var(--text-main);
+}
+
+.student-notes {
+background-color: #f8fafc;
+padding: 6px 10px;
+border-radius: 8px;
+margin-top: 4px;
+font-size: 0.82rem;
+}
+
+/* ============================================================
+MODALS
+============================================================ */
+
+.modal-overlay {
+position: fixed;
+top: 0;
+right: 0;
+left: 0;
+bottom: 0;
+background-color: rgba(0, 0, 0, 0.5);
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 2000;
+padding: 16px;
+}
+
+.modal-content {
+background-color: var(--card-bg);
+border-radius: 16px;
+width: 100%;
+max-width: 500px;
+box-shadow:
+0 20px 25px -5px
+rgba(0, 0, 0, 0.1);
+overflow: hidden;
+animation:
+modalScaleUp
+0.25s
+ease-out
+forwards;
+}
+
+@keyframes modalScaleUp {
+
+from {
+opacity: 0;
+transform: scale(0.95);
+}
+
+to {
+opacity: 1;
+transform: scale(1);
+}
+
+}
+
+.modal-header {
+padding: 16px 20px;
+border-bottom: 1px solid var(--border-color);
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.modal-header h3 {
+font-size: 1.1rem;
+font-weight: 700;
+color: var(--primary-color);
+}
+
+.close-btn {
+background: none;
+border: none;
+font-size: 1.5rem;
+cursor: pointer;
+color: var(--text-muted);
+}
+
+.modal-form {
+padding: 20px;
+display: flex;
+flex-direction: column;
+gap: 14px;
+}
+
+.form-group {
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+.form-group label {
+font-size: 0.85rem;
+font-weight: 600;
+color: var(--text-main);
+}
+
+.form-group input,
+.form-group textarea {
+padding: 10px 14px;
+border-radius: 10px;
+border: 1px solid var(--border-color);
+font-family: inherit;
+font-size: 0.9rem;
+outline: none;
+transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+border-color: var(--primary-color);
+}
+
+.form-group textarea {
+resize: vertical;
+min-height: 80px;
+}
+
+.modal-actions {
+display: flex;
+justify-content: flex-end;
+gap: 10px;
+margin-top: 10px;
+}
+
+.secondary-btn {
+background-color: #f1f5f9;
+color: var(--text-main);
+border: none;
+padding: 10px 16px;
+border-radius: 10px;
+font-family: inherit;
+font-size: 0.9rem;
+font-weight: 600;
+cursor: pointer;
+}
+
+.secondary-btn:hover {
+background-color: #e2e8f0;
+}
+
+.no-data {
+color: var(--text-muted);
+font-size: 0.9rem;
+text-align: center;
+padding: 24px;
+background: var(--card-bg);
+border-radius: 10px;
+border: 1px solid var(--border-color);
+grid-column: 1 / -1;
+}
+
+/* ============================================================
+NEW UNIFIED LOGIN SCREEN
+============================================================ */
+
+.welcome-screen-wrapper {
+display: flex;
+align-items: center;
+justify-content: center;
+min-height: 100vh;
+background:
+radial-gradient(
+circle at 20% 20%,
+rgba(80, 170, 128, 0.25),
+transparent 30%
+),
+radial-gradient(
+circle at 80% 80%,
+rgba(222, 190, 103, 0.16),
+transparent 32%
+),
+linear-gradient(
+135deg,
+#073a28 0%,
+#0d5c3f 48%,
+#062e20 100%
+);
+padding: 24px;
+position: fixed;
+inset: 0;
+z-index: 3000;
+overflow: hidden;
+}
+
+.welcome-glow {
+position: absolute;
+border-radius: 50%;
+filter: blur(60px);
+pointer-events: none;
+animation: glowFloat 9s ease-in-out infinite;
+}
+
+.glow-1 {
+width: 280px;
+height: 280px;
+background: rgba(112, 190, 151, 0.13);
+top: -80px;
+right: -50px;
+}
+
+.glow-2 {
+width: 350px;
+height: 350px;
+background: rgba(237, 207, 124, 0.09);
+bottom: -140px;
+left: -100px;
+animation-delay: -4s;
+}
+
+@keyframes glowFloat {
+
+0%,
+100% {
+transform: translate(0, 0) scale(1);
+}
+
+50% {
+transform: translate(25px, -20px) scale(1.08);
+}
+
+}
+
+/* ============================================================
+Floating Paper
+============================================================ */
+
+.floating-paper {
+position: absolute;
+z-index: 1;
+color: rgba(255, 255, 255, 0.45);
+font-size: 22px;
+pointer-events: none;
+user-select: none;
+filter: drop-shadow(
+0 4px 8px
+rgba(0, 0, 0, 0.08)
+);
+animation: paperFloat 14s ease-in-out infinite;
+}
+
+.paper-1 {
+top: 12%;
+right: 12%;
+animation-duration: 12s;
+}
+
+.paper-2 {
+top: 24%;
+right: 82%;
+font-size: 30px;
+animation-duration: 17s;
+animation-delay: -5s;
+}
+
+.paper-3 {
+top: 68%;
+right: 8%;
+font-size: 17px;
+animation-duration: 15s;
+animation-delay: -8s;
+}
+
+.paper-4 {
+top: 78%;
+right: 75%;
+font-size: 28px;
+animation-duration: 19s;
+animation-delay: -3s;
+}
+
+.paper-5 {
+top: 42%;
+right: 92%;
+font-size: 18px;
+animation-duration: 13s;
+animation-delay: -7s;
+}
+
+.paper-6 {
+top: 7%;
+right: 52%;
+font-size: 19px;
+animation-duration: 16s;
+animation-delay: -10s;
+}
+
+.paper-7 {
+top: 87%;
+right: 45%;
+font-size: 23px;
+animation-duration: 18s;
+animation-delay: -4s;
+}
+
+.paper-8 {
+top: 55%;
+right: 4%;
+font-size: 20px;
+animation-duration: 14s;
+animation-delay: -2s;
+}
+
+.paper-9 {
+top: 33%;
+right: 4%;
+font-size: 16px;
+animation-duration: 20s;
+animation-delay: -9s;
+}
+
+.paper-10 {
+top: 15%;
+right: 40%;
+font-size: 25px;
+animation-duration: 15s;
+animation-delay: -6s;
+}
+
+@keyframes paperFloat {
+
+0% {
+transform:
+translate3d(0, 20px, 0)
+rotate(0deg);
+opacity: 0;
+}
+
+12% {
+opacity: 0.65;
+}
+
+35% {
+transform:
+translate3d(-35px, -35px, 0)
+rotate(18deg);
+}
+
+65% {
+transform:
+translate3d(25px, -80px, 0)
+rotate(-15deg);
+}
+
+88% {
+opacity: 0.5;
+}
+
+100% {
+transform:
+translate3d(-15px, -130px, 0)
+rotate(22deg);
+opacity: 0;
+}
+
+}
+
+/* ============================================================
+Welcome Card
+============================================================ */
+
+.welcome-card {
+position: relative;
+z-index: 10;
+width: 100%;
+max-width: 470px;
+padding: 36px 34px 28px;
+background: rgba(255, 255, 255, 0.96);
+border: 1px solid rgba(255, 255, 255, 0.8);
+border-radius: 28px;
+box-shadow:
+0 30px 70px
+rgba(0, 0, 0, 0.22),
+0 8px 25px
+rgba(0, 0, 0, 0.08);
+text-align: center;
+backdrop-filter: blur(16px);
+animation:
+welcomeCardEnter
+0.8s
+cubic-bezier(
+0.22,
+1,
+0.36,
+1
+)
+both;
+}
+
+@keyframes welcomeCardEnter {
+
+from {
+opacity: 0;
+transform:
+translateY(35px)
+scale(0.96);
+}
+
+to {
+opacity: 1;
+transform:
+translateY(0)
+scale(1);
+}
+
+}
+
+/* ============================================================
+Welcome Icon
+============================================================ */
+
+.welcome-icon {
+width: 76px;
+height: 76px;
+margin: 0 auto 18px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 22px;
+background:
+linear-gradient(
+135deg,
+#0d5c3f,
+#16825b
+);
+color: #ffffff;
+font-size: 2.5rem;
+box-shadow:
+0 12px 25px
+rgba(13, 92, 63, 0.22);
+animation:
+iconBreath
+4s
+ease-in-out
+infinite;
+}
+
+@keyframes iconBreath {
+
+0%,
+100% {
+transform:
+translateY(0)
+rotate(0deg);
+}
+
+50% {
+transform:
+translateY(-4px)
+rotate(1deg);
+}
+
+}
+
+/* ============================================================
+Welcome Titles
+============================================================ */
+
+.welcome-title-area {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.welcome-small-title {
+color: #9a7b27;
+font-size: 0.78rem;
+font-weight: 700;
+letter-spacing: 0.5px;
+}
+
+.welcome-card h1 {
+font-size: 1.85rem;
+line-height: 1.35;
+font-weight: 800;
+color: #183c30;
+}
+
+.welcome-card h1 strong {
+color: var(--primary-color);
+}
+
+.welcome-desc {
+font-size: 0.9rem;
+color: var(--text-muted);
+line-height: 1.8;
+max-width: 360px;
+margin: 0 auto;
+}
+
+/* ============================================================
+Unified Login Form
+============================================================ */
+
+.unified-login-form {
+margin-top: 24px;
+display: flex;
+flex-direction: column;
+gap: 16px;
+text-align: right;
+}
+
+.login-field {
+display: flex;
+flex-direction: column;
+gap: 7px;
+}
+
+.login-field label {
+font-size: 0.82rem;
+font-weight: 700;
+color: #334155;
+}
+
+.login-input-wrapper {
+position: relative;
+display: flex;
+align-items: center;
+}
+
+.login-input-icon {
+position: absolute;
+right: 13px;
+font-size: 1rem;
+pointer-events: none;
+z-index: 2;
+}
+
+.login-input-wrapper input {
+width: 100%;
+height: 50px;
+padding: 0 44px 0 44px;
+border: 1px solid #dbe3e8;
+border-radius: 13px;
+background: #f8fafb;
+color: #1f2937;
+font-family: inherit;
+font-size: 0.92rem;
+outline: none;
+transition: all 0.25s ease;
+}
+
+.login-input-wrapper input::placeholder {
+color: #a0aab4;
+}
+
+.login-input-wrapper input:focus {
+border-color: var(--primary-color);
+background: #ffffff;
+box-shadow:
+0 0 0 4px
+rgba(13, 92, 63, 0.08);
+}
+
+.toggle-password-btn {
+position: absolute;
+left: 10px;
+width: 34px;
+height: 34px;
+border: none;
+background: transparent;
+cursor: pointer;
+border-radius: 8px;
+font-size: 1rem;
+opacity: 0.65;
+transition: all 0.2s ease;
+}
+
+.toggle-password-btn:hover {
+background: #edf3f0;
+opacity: 1;
+}
+
+/* ============================================================
+Login Error
+============================================================ */
+
+.unified-login-error {
+padding: 10px 13px;
+border-radius: 10px;
+background: #fff1f2;
+border: 1px solid #fecdd3;
+color: #9f1239;
+font-size: 0.82rem;
+font-weight: 600;
+text-align: right;
+animation: errorShake 0.3s ease;
+}
+
+@keyframes errorShake {
+
+0%,
+100% {
+transform: translateX(0);
+}
+
+25% {
+transform: translateX(-5px);
+}
+
+75% {
+transform: translateX(5px);
+}
+
+}
+
+/* ============================================================
+Login Button
+============================================================ */
+
+.unified-login-btn {
+margin-top: 3px;
+height: 53px;
+width: 100%;
+border: none;
+border-radius: 14px;
+background:
+linear-gradient(
+135deg,
+#0d5c3f 0%,
+#08704a 55%,
+#0a4831 100%
+);
+color: #ffffff;
+font-family: inherit;
+font-size: 1rem;
+font-weight: 800;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+box-shadow:
+0 10px 22px
+rgba(13, 92, 63, 0.22);
+transition:
+transform 0.2s ease,
+box-shadow 0.2s ease,
+opacity 0.2s ease;
+}
+
+.unified-login-btn:hover {
+transform: translateY(-2px);
+box-shadow:
+0 14px 28px
+rgba(13, 92, 63, 0.28);
+}
+
+.unified-login-btn:active {
+transform: translateY(0);
+}
+
+.unified-login-btn:disabled {
+cursor: not-allowed;
+opacity: 0.72;
+transform: none;
+}
+
+.login-btn-arrow {
+font-size: 1.2rem;
+transition: transform 0.2s ease;
+}
+
+.unified-login-btn:hover .login-btn-arrow {
+transform: translateX(-4px);
+}
+
+.login-spinner,
+.student-loading-spinner {
+width: 18px;
+height: 18px;
+border: 2px solid rgba(255,255,255,0.35);
+border-top-color: #ffffff;
+border-radius: 50%;
+animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+
+to {
+transform: rotate(360deg);
+}
+
+}
+
+/* ============================================================
+Welcome Footer
+============================================================ */
+
+.welcome-footer {
+margin-top: 22px;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 9px;
+color: #8a959e;
+font-size: 0.72rem;
+}
+
+.footer-separator {
+color: #c0c7cc;
+}
+
+/* ============================================================
+Student Mode
+============================================================ */
+
+#app.student-mode .sidebar {
+display: none;
+}
+
+#app.student-mode .main-content {
+margin-right: 0;
+}
+
+#app.student-mode .top-bar {
+background: rgba(255, 255, 255, 0.96);
+}
+
+#app.student-mode .content-body {
+padding: 24px;
+background:
+linear-gradient(
+180deg,
+#f4faf7 0%,
+#f4f6f8 100%
+);
+}
+
+/* ============================================================
+Student Portal
+============================================================ */
+
+.student-portal {
+width: 100%;
+max-width: 1100px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+gap: 20px;
+animation:
+studentPortalEnter
+0.5s
+ease
+both;
+}
+
+@keyframes studentPortalEnter {
+
+from {
+opacity: 0;
+transform: translateY(12px);
+}
+
+to {
+opacity: 1;
+transform: translateY(0);
+}
+
+}
+
+/* ============================================================
+Student Header
+============================================================ */
+
+.student-portal-header {
+background:
+linear-gradient(
+135deg,
+#0d5c3f 0%,
+#08704a 55%,
+#0a4831 100%
+);
+color: #ffffff;
+border-radius: 20px;
+padding: 22px 24px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
+box-shadow:
+0 12px 28px
+rgba(13, 92, 63, 0.14);
+}
+
+.student-portal-kicker {
+font-size: 0.75rem;
+opacity: 0.78;
+margin-bottom: 3px;
+}
+
+.student-portal-header h1 {
+font-size: 1.45rem;
+margin-bottom: 3px;
+}
+
+.student-portal-header p {
+font-size: 0.84rem;
+opacity: 0.85;
+}
+
+.student-logout-btn {
+flex-shrink: 0;
+border:
+1px solid
+rgba(255,255,255,0.35);
+background:
+rgba(255,255,255,0.12);
+color: #ffffff;
+padding: 9px 14px;
+border-radius: 10px;
+font-family: inherit;
+font-weight: 700;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+.student-logout-btn:hover {
+background: rgba(255,255,255,0.2);
+}
+
+.student-logout-btn:disabled {
+opacity: 0.65;
+cursor: not-allowed;
+}
+
+/* ============================================================
+Student Loading
+============================================================ */
+
+.student-message {
+min-height: 180px;
+background: #ffffff;
+border: 1px solid var(--border-color);
+border-radius: 18px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+color: var(--text-muted);
+}
+
+.student-loading-spinner {
+border-color: rgba(13,92,63,0.2);
+border-top-color: var(--primary-color);
+}
+
+/* ============================================================
+Student Profile
+============================================================ */
+
+.student-profile-card {
+background: #ffffff;
+border: 1px solid var(--border-color);
+border-radius: 18px;
+padding: 22px;
+display: flex;
+align-items: center;
+gap: 16px;
+box-shadow: var(--shadow-sm);
+}
+
+.student-avatar {
+width: 64px;
+height: 64px;
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 18px;
+background:
+linear-gradient(
+135deg,
+#e2f3eb,
+#cde9dc
+);
+font-size: 2rem;
+}
+
+.student-profile-label {
+display: block;
+font-size: 0.72rem;
+color: #8b959d;
+margin-bottom: 2px;
+}
+
+.student-profile-info h2 {
+font-size: 1.3rem;
+color: #173b2e;
+}
+
+.student-profile-info p {
+margin-top: 5px;
+color: var(--text-muted);
+font-size: 0.82rem;
+}
+
+.student-level-badge {
+display: inline-flex;
+padding: 3px 10px;
+border-radius: 20px;
+background: #e7f6ee;
+color: #17613f;
+font-weight: 700;
+}
+
+/* ============================================================
+Student Summary
+============================================================ */
+
+.student-summary {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 14px;
+}
+
+.student-summary-card {
+background: #ffffff;
+border: 1px solid var(--border-color);
+border-radius: 16px;
+padding: 18px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+box-shadow: var(--shadow-sm);
+}
+
+.student-summary-icon {
+font-size: 1.35rem;
+margin-bottom: 5px;
+}
+
+.student-summary-card strong {
+font-size: 1.15rem;
+color: var(--primary-color);
+}
+
+.student-summary-card small {
+color: var(--text-muted);
+font-size: 0.75rem;
+margin-top: 2px;
+}
+
+/* ============================================================
+Reports Section
+============================================================ */
+
+.student-reports-section {
+display: flex;
+flex-direction: column;
+gap: 14px;
+}
+
+.student-section-title {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 3px;
+}
+
+.student-section-title span {
+display: block;
+color: #8a959e;
+font-size: 0.72rem;
+margin-bottom: 2px;
+}
+
+.student-section-title h2 {
+font-size: 1.15rem;
+color: #183c30;
+}
+
+/* ============================================================
+Student Report Card
+============================================================ */
+
+.student-report-card {
+background: #ffffff;
+border: 1px solid var(--border-color);
+border-radius: 18px;
+overflow: hidden;
+box-shadow: var(--shadow-sm);
+transition:
+transform 0.2s ease,
+box-shadow 0.2s ease;
+}
+
+.student-report-card:hover {
+transform: translateY(-2px);
+box-shadow: var(--shadow-md);
+}
+
+.student-report-header {
+padding: 16px 18px;
+background:
+linear-gradient(
+135deg,
+#f5fbf8,
+#ffffff
+);
+border-bottom: 1px solid var(--border-color);
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 12px;
+}
+
+.student-report-date-label {
+display: block;
+color: #8a959e;
+font-size: 0.68rem;
+margin-bottom: 2px;
+}
+
+.student-report-header strong {
+color: #1e4033;
+font-size: 0.9rem;
+}
+
+.student-report-rating {
+background: #fff8df;
+color: #80651a;
+border: 1px solid #f1df9e;
+border-radius: 20px;
+padding: 5px 10px;
+font-size: 0.75rem;
+font-weight: 700;
+}
+
+.student-report-body {
+padding: 18px;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 16px;
+}
+
+.student-report-field {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.student-report-field > strong {
+font-size: 0.82rem;
+color: #334155;
+}
+
+.student-report-values {
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+.quran-item {
+padding: 8px 10px;
+border-radius: 9px;
+background: #f7faf9;
+border: 1px solid #e5eee9;
+color: #365246;
+font-size: 0.78rem;
+display: flex;
+flex-direction: column;
+gap: 2px;
+}
+
+.student-no-value {
+color: #9aa3aa;
+font-size: 0.78rem;
+}
+
+.student-notes-value {
+background: #f8fafc;
+border: 1px solid #edf0f3;
+border-radius: 10px;
+padding: 9px 11px;
+color: #59636b;
+font-size: 0.8rem;
+line-height: 1.7;
+}
+
+/* ============================================================
+Student Empty / Error
+============================================================ */
+
+.student-empty {
+background: #ffffff;
+border: 1px dashed #cbd5e1;
+border-radius: 18px;
+padding: 42px 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+gap: 6px;
+color: var(--text-muted);
+}
+
+.student-empty-icon {
+width: 58px;
+height: 58px;
+border-radius: 17px;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #eef7f2;
+font-size: 1.7rem;
+margin-bottom: 5px;
+}
+
+.student-empty strong {
+color: #475569;
+font-size: 0.9rem;
+}
+
+.student-empty span {
+font-size: 0.75rem;
+}
+
+.student-error {
+padding: 14px 16px;
+border-radius: 12px;
+background: #fff1f2;
+border: 1px solid #fecdd3;
+color: #9f1239;
+font-size: 0.85rem;
+font-weight: 600;
+}
+
+/* ============================================================
+PAYMENTS / ACCOUNTS
+============================================================ */
+
+.payments-container {
+display: flex;
+flex-direction: column;
+gap: 20px;
+width: 100%;
+}
+
+.payments-header-card {
+background: var(--card-bg);
+border: 1px solid var(--border-color);
+padding: 20px 24px;
+border-radius: 16px;
+box-shadow: var(--shadow-md);
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 16px;
+}
+
+.payments-title-area h2 {
+font-size: 1.3rem;
+font-weight: 700;
+color: var(--primary-color);
+margin-bottom: 4px;
+}
+
+.payments-title-area p {
+font-size: 0.9rem;
+color: var(--text-muted);
+}
+
+.payments-month-control {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.payments-month-control label {
+font-size: 0.85rem;
+font-weight: 600;
+color: var(--text-main);
+}
+
+.payments-month-control input {
+padding: 9px 12px;
+border: 1px solid var(--border-color);
+border-radius: 10px;
+background: #ffffff;
+font-family: inherit;
+font-size: 0.9rem;
+outline: none;
+}
+
+.payments-month-control input:focus {
+border-color: var(--primary-color);
+}
+
+/* ============================================================
+PAYMENTS SUMMARY
+============================================================ */
+
+.payments-summary-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 12px;
+}
+
+.payments-summary-card {
+background: var(--card-bg);
+border: 1px solid var(--border-color);
+border-radius: 14px;
+padding: 18px;
+box-shadow: var(--shadow-sm);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+gap: 4px;
+}
+
+.payments-summary-icon {
+font-size: 1.4rem;
+margin-bottom: 2px;
+}
+
+.payments-summary-value {
+font-size: 1.45rem;
+font-weight: 800;
+color: var(--primary-color);
+}
+
+.payments-summary-label {
+font-size: 0.78rem;
+color: var(--text-muted);
+font-weight: 500;
+}
+
+/* ============================================================
+PAYMENTS FILTERS
+============================================================ */
+
+.payments-filters {
+background: var(--card-bg);
+border: 1px solid var(--border-color);
+border-radius: 14px;
+padding: 16px;
+box-shadow: var(--shadow-sm);
+display: grid;
+grid-template-columns: minmax(200px, 1fr) auto;
+gap: 12px;
+align-items: center;
+}
+
+.payments-search {
+width: 100%;
+padding: 10px 14px;
+border: 1px solid var(--border-color);
+border-radius: 10px;
+background: #ffffff;
+font-family: inherit;
+font-size: 0.9rem;
+outline: none;
+}
+
+.payments-search:focus {
+border-color: var(--primary-color);
+}
+
+.payments-status-filters {
+display: flex;
+gap: 6px;
+flex-wrap: wrap;
+}
+
+.payments-filter-btn {
+border: 1px solid var(--border-color);
+background: #ffffff;
+color: var(--text-muted);
+padding: 8px 13px;
+border-radius: 9px;
+font-family: inherit;
+font-size: 0.8rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+.payments-filter-btn:hover {
+border-color: var(--primary-color);
+color: var(--primary-color);
+}
+
+.payments-filter-btn.active {
+background: var(--primary-color);
+border-color: var(--primary-color);
+color: #ffffff;
+}
+
+/* ============================================================
+PAYMENTS LIST
+============================================================ */
+
+.payments-list {
+background: var(--card-bg);
+border: 1px solid var(--border-color);
+border-radius: 14px;
+box-shadow: var(--shadow-sm);
+overflow: hidden;
+}
+
+.payments-table-wrapper {
+width: 100%;
+overflow-x: auto;
+}
+
+.payments-table {
+width: 100%;
+border-collapse: collapse;
+min-width: 760px;
+}
+
+.payments-table th {
+background: #f8fafc;
+color: var(--text-muted);
+font-size: 0.78rem;
+font-weight: 700;
+padding: 13px 14px;
+border-bottom: 1px solid var(--border-color);
+white-space: nowrap;
+}
+
+.payments-table td {
+padding: 14px;
+font-size: 0.85rem;
+border-bottom: 1px solid #edf0f2;
+vertical-align: middle;
+}
+
+.payments-table tbody tr:last-child td {
+border-bottom: none;
+}
+
+.payments-table tbody tr {
+transition: background-color 0.15s ease;
+}
+
+.payments-table tbody tr:hover {
+background: #fafdfb;
+}
+
+.payment-student-name {
+font-weight: 700;
+color: var(--text-main);
+}
+
+.payment-student-phone {
+font-size: 0.72rem;
+color: var(--text-muted);
+margin-top: 2px;
+}
+
+.payment-amount {
+font-weight: 700;
+color: var(--primary-color);
+white-space: nowrap;
+}
+
+.payment-date {
+color: var(--text-muted);
+font-size: 0.78rem;
+}
+
+.payment-status {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+padding: 5px 11px;
+border-radius: 20px;
+font-size: 0.73rem;
+font-weight: 700;
+white-space: nowrap;
+}
+
+.payment-status.paid {
+background: #dcfce7;
+color: #166534;
+}
+
+.payment-status.unpaid {
+background: #fee2e2;
+color: #991b1b;
+}
+
+.payment-status.partial {
+background: #fef3c7;
+color: #92400e;
+}
+
+.payment-status.unknown {
+background: #f1f5f9;
+color: #64748b;
+}
+
+.payment-method {
+color: var(--text-muted);
+font-size: 0.78rem;
+}
+
+.payment-action-btn {
+border: none;
+background: #e8f4ee;
+color: var(--primary-color);
+padding: 7px 11px;
+border-radius: 8px;
+font-family: inherit;
+font-size: 0.75rem;
+font-weight: 700;
+cursor: pointer;
+transition: all 0.2s ease;
+white-space: nowrap;
+}
+
+.payment-action-btn:hover {
+background: var(--primary-color);
+color: #ffffff;
+}
+
+.payment-action-btn.secondary {
+background: #f1f5f9;
+color: var(--text-main);
+}
+
+.payment-action-btn.secondary:hover {
+background: #e2e8f0;
+color: var(--text-main);
+}
+
+.payments-empty {
+padding: 40px 20px;
+text-align: center;
+color: var(--text-muted);
+font-size: 0.9rem;
+}
+
+/* ============================================================
+PAYMENT MOBILE CARDS
+============================================================ */
+
+.payments-mobile-list {
+display: none;
+}
+
+.payment-mobile-card {
+background: #ffffff;
+border: 1px solid var(--border-color);
+border-radius: 14px;
+padding: 15px;
+display: flex;
+flex-direction: column;
+gap: 12px;
+box-shadow: var(--shadow-sm);
+}
+
+.payment-mobile-header {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+gap: 10px;
+}
+
+.payment-mobile-student {
+font-size: 0.95rem;
+font-weight: 700;
+color: var(--text-main);
+}
+
+.payment-mobile-details {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8px;
+}
+
+.payment-mobile-detail {
+background: #f8fafc;
+border-radius: 9px;
+padding: 8px 10px;
+display: flex;
+flex-direction: column;
+gap: 2px;
+}
+
+.payment-mobile-detail-label {
+font-size: 0.68rem;
+color: var(--text-muted);
+}
+
+.payment-mobile-detail-value {
+font-size: 0.8rem;
+font-weight: 600;
+color: var(--text-main);
+}
+
+.payment-mobile-actions {
+display: flex;
+gap: 8px;
+}
+
+.payment-mobile-actions button {
+flex: 1;
+}
+
+/* ============================================================
+PAYMENT MODAL
+============================================================ */
+
+.payment-modal-content {
+max-width: 520px;
+}
+
+.payment-student-summary {
+background:
+linear-gradient(
+135deg,
+#f3faf6,
+#ffffff
+);
+border: 1px solid #e1eee7;
+border-radius: 12px;
+padding: 12px 14px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 12px;
+}
+
+.payment-student-summary strong {
+color: #173b2e;
+font-size: 0.95rem;
+}
+
+.payment-student-summary span {
+font-size: 0.78rem;
+color: var(--text-muted);
+}
+
+.payment-history {
+margin-top: 4px;
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.payment-history-title {
+font-size: 0.82rem;
+font-weight: 700;
+color: var(--text-main);
+}
+
+.payment-history-item {
+background: #f8fafc;
+border: 1px solid #edf0f3;
+border-radius: 9px;
+padding: 9px 11px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 10px;
+font-size: 0.76rem;
+}
+
+.payment-history-item strong {
+color: var(--primary-color);
+}
+
+.payment-history-item span {
+color: var(--text-muted);
+}
+
+/* ============================================================
+RESPONSIVE
+============================================================ */
+
+@media (max-width: 900px) {
+
+.student-report-body {
+grid-template-columns: 1fr;
+}
+
+.payments-summary-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+
+}
+
+@media (max-width: 768px) {
+
+.sidebar {
+width: 100%;
+position: static;
+height: auto;
+}
+
+.main-content {
+margin-right: 0;
+}
+
+.app-layout {
+flex-direction: column;
+}
+
+.top-bar {
+padding: 0 18px;
+}
+
+.content-body {
+padding: 18px;
+}
+
+.student-summary {
+grid-template-columns: 1fr;
+}
+
+.student-portal-header {
+align-items: flex-start;
+flex-direction: column;
+}
+
+.student-logout-btn {
+width: 100%;
+}
+
+/* ============================================================
+PAYMENTS MOBILE
+============================================================ */
+
+.payments-container {
+gap: 14px;
+}
+
+.payments-header-card {
+padding: 16px;
+border-radius: 14px;
+align-items: stretch;
+}
+
+.payments-title-area h2 {
+font-size: 1.1rem;
+}
+
+.payments-title-area p {
+font-size: 0.8rem;
+line-height: 1.6;
+}
+
+.payments-month-control {
+width: 100%;
+align-items: stretch;
+flex-direction: column;
+}
+
+.payments-month-control input {
+width: 100%;
+font-size: 16px;
+}
+
+.payments-summary-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 8px;
+}
+
+.payments-summary-card {
+padding: 13px 8px;
+min-width: 0;
+}
+
+.payments-summary-value {
+font-size: 1.2rem;
+}
+
+.payments-summary-label {
+font-size: 0.68rem;
+}
+
+.payments-filters {
+grid-template-columns: 1fr;
+padding: 12px;
+}
+
+.payments-status-filters {
+width: 100%;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+}
+
+.payments-filter-btn {
+width: 100%;
+padding: 8px 5px;
+font-size: 0.7rem;
+}
+
+.payments-table-wrapper {
+display: none;
+}
+
+.payments-mobile-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+padding: 10px;
+}
+
+}
+
+@media (max-width: 600px) {
+
+.welcome-screen-wrapper {
+padding: 16px;
+}
+
+.welcome-card {
+padding: 28px 20px 22px;
+border-radius: 22px;
+}
+
+.welcome-icon {
+width: 66px;
+height: 66px;
+font-size: 2.1rem;
+}
+
+.welcome-card h1 {
+font-size: 1.5rem;
+}
+
+.welcome-desc {
+font-size: 0.82rem;
+}
+
+.welcome-footer {
+flex-wrap: wrap;
+}
+
+.student-profile-card {
+padding: 18px;
+}
+
+.student-avatar {
+width: 55px;
+height: 55px;
+font-size: 1.7rem;
+}
+
+.student-profile-info h2 {
+font-size: 1.1rem;
+}
+
+.student-portal-header {
+padding: 18px;
+}
+
+.student-portal-header h1 {
+font-size: 1.25rem;
+}
+
+/* Payments */
+
+.payment-mobile-details {
+grid-template-columns: 1fr 1fr;
+}
+
+.payment-mobile-actions {
+flex-direction: column;
+}
+
+}
+
+/* ============================================================
+Reduced Motion
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+*,
+*::before,
+*::after {
+animation-duration: 0.01ms !important;
+animation-iteration-count: 1 !important;
+transition-duration: 0.01ms !important;
+scroll-behavior: auto !important;
+}
+
+}
+
+/* ============================================================
+MOBILE RESPONSIVE FIX
+يحافظ على تصميم الكمبيوتر ويضبط الموبايل فقط
+============================================================ */
+
+@media (max-width: 768px) {
+
+.app-layout {
+display: block;
+min-height: 100vh;
+}
+
+.sidebar {
+position: sticky;
+top: 0;
+right: auto;
+width: 100%;
+height: auto;
+min-height: 0;
+border-left: none;
+border-bottom: 1px solid var(--border-color);
+box-shadow: var(--shadow-sm);
+z-index: 1000;
+}
+
+.sidebar-brand {
+height: 56px;
+padding: 0 16px;
+justify-content: center;
+font-size: 1rem;
+}
+
+.sidebar-nav {
+padding: 8px 10px;
+display: grid;
+grid-template-columns: repeat(5, minmax(0, 1fr));
+gap: 6px;
+overflow-x: auto;
+}
+
+.nav-item {
+min-width: 0;
+padding: 9px 5px;
+border-radius: 8px;
+font-size: 0.72rem;
+justify-content: center;
+text-align: center;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.main-content {
+width: 100%;
+min-width: 0;
+margin-right: 0;
+}
+
+.top-bar {
+position: sticky;
+top: 0;
+height: 56px;
+padding: 0 14px;
+z-index: 900;
+}
+
+#page-title {
+font-size: 0.95rem;
+}
+
+.content-body {
+width: 100%;
+padding: 14px;
+min-width: 0;
+}
+
+/* Dashboard */
+
+.dashboard-container {
+width: 100%;
+min-width: 0;
+gap: 14px;
+}
+
+.dash-welcome-card {
+padding: 18px;
+border-radius: 14px;
+}
+
+.dash-welcome-card h2 {
+font-size: 1.1rem;
+line-height: 1.5;
+}
+
+.dash-date,
+.dash-subtitle {
+font-size: 0.78rem;
+}
+
+.stats-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 8px;
+}
+
+.stat-card {
+min-width: 0;
+padding: 12px 8px;
+}
+
+.stat-value {
+font-size: 1.25rem;
+}
+
+.stat-label {
+font-size: 0.7rem;
+line-height: 1.5;
+}
+
+/* Lessons */
+
+.lesson-card,
+.lesson-list-item {
+width: 100%;
+min-width: 0;
+padding: 12px;
+gap: 10px;
+align-items: stretch;
+}
+
+.lesson-card {
+flex-direction: column;
+}
+
+.lesson-info,
+.item-main {
+width: 100%;
+min-width: 0;
+}
+
+.lesson-student,
+.item-student {
+font-size: 0.9rem;
+line-height: 1.6;
+overflow-wrap: anywhere;
+}
+
+.lesson-time,
+.item-time-type {
+font-size: 0.75rem;
+line-height: 1.6;
+overflow-wrap: anywhere;
+}
+
+.lesson-type {
+max-width: 100%;
+overflow-wrap: anywhere;
+}
+
+.lesson-card > *,
+.lesson-list-item > * {
+min-width: 0;
+max-width: 100%;
+}
+
+.lesson-card button,
+.lesson-list-item button {
+max-width: 100%;
+}
+
+/* Students */
+
+.students-container {
+width: 100%;
+min-width: 0;
+gap: 14px;
+}
+
+.students-header-card {
+width: 100%;
+padding: 16px;
+border-radius: 14px;
+align-items: stretch;
+}
+
+.students-title-area {
+min-width: 0;
+width: 100%;
+}
+
+.students-title-area h2 {
+font-size: 1.1rem;
+}
+
+.students-title-area p {
+font-size: 0.8rem;
+line-height: 1.6;
+}
+
+.primary-action-btn {
+width: 100%;
+min-height: 44px;
+}
+
+.filters-panel {
+width: 100%;
+padding: 12px;
+min-width: 0;
+}
+
+.filters-grid {
+grid-template-columns: 1fr;
+width: 100%;
+}
+
+.search-bar-wrapper,
+.search-input,
+.filter-input,
+.filter-select {
+width: 100%;
+max-width: 100%;
+min-width: 0;
+}
+
+.students-grid {
+grid-template-columns: 1fr;
+width: 100%;
+}
+
+.student-card {
+width: 100%;
+min-width: 0;
+padding: 14px;
+}
+
+.student-card-header {
+min-width: 0;
+gap: 8px;
+}
+
+.student-name {
+min-width: 0;
+overflow-wrap: anywhere;
+word-break: break-word;
+}
+
+.student-age {
+flex-shrink: 0;
+}
+
+.student-card-body {
+min-width: 0;
+}
+
+.student-card-body > * {
+max-width: 100%;
+overflow-wrap: anywhere;
+}
+
+.student-notes {
+overflow-wrap: anywhere;
+word-break: break-word;
+}
+
+/* Modals */
+
+.modal-overlay {
+padding: 10px;
+align-items: center;
+overflow-y: auto;
+}
+
+.modal-content {
+width: 100%;
+max-width: 100%;
+max-height: calc(100vh - 20px);
+border-radius: 14px;
+overflow-y: auto;
+}
+
+.modal-header {
+padding: 13px 15px;
+}
+
+.modal-header h3 {
+font-size: 0.95rem;
+}
+
+.modal-form {
+padding: 15px;
+gap: 12px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+width: 100%;
+max-width: 100%;
+font-size: 16px;
+}
+
+.modal-actions {
+flex-direction: column;
+width: 100%;
+}
+
+.modal-actions button {
+width: 100%;
+min-height: 44px;
+}
+
+/* Student Portal */
+
+#app.student-mode .content-body {
+padding: 12px;
+}
+
+.student-portal {
+width: 100%;
+max-width: 100%;
+gap: 14px;
+}
+
+.student-portal-header {
+width: 100%;
+padding: 17px;
+border-radius: 16px;
+}
+
+.student-portal-header h1 {
+font-size: 1.15rem;
+line-height: 1.5;
+}
+
+.student-portal-header p {
+font-size: 0.78rem;
+line-height: 1.6;
+}
+
+.student-logout-btn {
+width: 100%;
+min-height: 42px;
+}
+
+.student-profile-card {
+width: 100%;
+padding: 15px;
+gap: 12px;
+min-width: 0;
+}
+
+.student-profile-info {
+min-width: 0;
+}
+
+.student-profile-info h2 {
+font-size: 1rem;
+overflow-wrap: anywhere;
+}
+
+.student-profile-info p {
+font-size: 0.76rem;
+line-height: 1.6;
+overflow-wrap: anywhere;
+}
+
+.student-summary {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 8px;
+}
+
+.student-summary-card {
+min-width: 0;
+padding: 13px 8px;
+}
+
+.student-summary-card strong {
+font-size: 1rem;
+}
+
+.student-summary-card small {
+font-size: 0.7rem;
+line-height: 1.5;
+}
+
+/* Reports */
+
+.student-report-card {
+width: 100%;
+min-width: 0;
+}
+
+.student-report-header {
+padding: 13px;
+align-items: flex-start;
+flex-wrap: wrap;
+}
+
+.student-report-header > * {
+min-width: 0;
+max-width: 100%;
+}
+
+.student-report-header strong {
+overflow-wrap: anywhere;
+}
+
+.student-report-body {
+grid-template-columns: 1fr;
+padding: 14px;
+gap: 12px;
+}
+
+.student-report-field {
+min-width: 0;
+}
+
+.student-report-values {
+min-width: 0;
+}
+
+.quran-item,
+.student-notes-value {
+min-width: 0;
+max-width: 100%;
+overflow-wrap: anywhere;
+word-break: break-word;
+}
+
+/* Global */
+
+img,
+video,
+iframe,
+table {
+max-width: 100%;
+}
+
+input,
+textarea,
+select,
+button {
+max-width: 100%;
+}
+
+* {
+min-width: 0;
+}
+
+/* ============================================================
+PAYMENTS MOBILE FIX
+============================================================ */
+
+.payments-container {
+width: 100%;
+min-width: 0;
+}
+
+.payments-header-card {
+width: 100%;
+}
+
+.payments-summary-grid {
+width: 100%;
+}
+
+.payments-filters {
+width: 100%;
+}
+
+.payments-mobile-list {
+width: 100%;
+padding: 8px;
+}
+
+.payment-mobile-card {
+width: 100%;
+min-width: 0;
+}
+
+.payment-mobile-header {
+min-width: 0;
+}
+
+.payment-mobile-student {
+overflow-wrap: anywhere;
+}
+
+}
+
+/* ============================================================
+VERY SMALL PHONES
+============================================================ */
+
+@media (max-width: 420px) {
+
+.sidebar-nav {
+grid-template-columns: repeat(5, minmax(72px, 1fr));
+overflow-x: auto;
+}
+
+.nav-item {
+font-size: 0.68rem;
+padding: 8px 4px;
+}
+
+.content-body {
+padding: 10px;
+}
+
+.stats-grid {
+gap: 6px;
+}
+
+.stat-card {
+padding: 10px 5px;
+}
+
+.stat-value {
+font-size: 1.15rem;
+}
+
+.stat-label {
+font-size: 0.66rem;
+}
+
+.dash-welcome-card {
+padding: 15px;
+}
+
+.student-summary {
+grid-template-columns: 1fr 1fr;
+}
+
+.welcome-screen-wrapper {
+padding: 10px;
+}
+
+.welcome-card {
+padding: 24px 16px 20px;
+border-radius: 20px;
+}
+
+.welcome-card h1 {
+font-size: 1.35rem;
+}
+
+.welcome-desc {
+font-size: 0.78rem;
+}
+
+.unified-login-form {
+margin-top: 18px;
+gap: 12px;
+}
+
+.login-input-wrapper input {
+height: 48px;
+font-size: 16px;
+}
+
+.unified-login-btn {
+height: 50px;
+}
+
+/* Payments */
+
+.payments-summary-grid {
+gap: 6px;
+}
+
+.payments-summary-card {
+padding: 10px 5px;
+}
+
+.payments-summary-icon {
+font-size: 1.15rem;
+}
+
+.payments-summary-value {
+font-size: 1.05rem;
+}
+
+.payments-summary-label {
+font-size: 0.62rem;
+}
+
+.payments-status-filters {
+grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.payments-filter-btn {
+font-size: 0.64rem;
+padding: 8px 3px;
+}
+
+.payment-mobile-details {
+grid-template-columns: 1fr;
+}
+
+}
