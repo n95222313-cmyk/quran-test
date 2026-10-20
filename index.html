@@ -381,6 +381,10 @@
       auth
     } from "./src/config/firebase.js";
 
+    import {
+      appConfig
+    } from "./src/config/app-config.js";
+
 
 
     /* =========================================================
@@ -601,7 +605,7 @@
        ========================================================= */
 
     const CENTER_ADMIN_EMAIL =
-      "abdallah@test.com";
+      appConfig.centerAdminEmail;
 
 
 
@@ -1098,6 +1102,7 @@
         console.warn(
           "Student history state error:",
           error
+
         );
 
       }
